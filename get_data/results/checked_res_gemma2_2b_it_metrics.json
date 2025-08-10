@@ -1,0 +1,8 @@
+{
+  "prompt_accuracy": 0.10266666666666667,
+  "instruction_accuracy": 0.49247198879551823,
+  "prompt_total": 1500,
+  "prompt_correct": 154,
+  "instruction_total": 5712,
+  "instruction_correct": 2813
+}
