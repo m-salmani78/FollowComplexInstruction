@@ -11,10 +11,28 @@ class ScriptArguments:
     # data parameters
     beta: Optional[float] = field(default=0.1, metadata={"help": "the beta parameter for DPO loss"})
 
+    # data files
+    train_file: Optional[str] = field(
+        default="./data/gemma2_dpo_train.jsonl",
+        metadata={"help": "Path to the JSONL training file for DPO with fields: prompt, chosen, reject(ed)"},
+    )
+    eval_file: Optional[str] = field(
+        default="./data/gemma2_dpo_train.jsonl",
+        metadata={"help": "Path to the JSONL eval file for DPO (can reuse train file if no eval set)"},
+    )
+
     # training parameters
     model_name_or_path: Optional[str] = field(
         default="/data/zengjie/models/llama2_13b_chat",
         metadata={"help": "the location of the SFT model name or path"},
+    )
+    hf_token: Optional[str] = field(
+        default="",
+        metadata={"help": "Hugging Face access token for gated models (optional). If empty, falls back to env var HUGGINGFACE_HUB_TOKEN if set."},
+    )
+    trust_remote_code: Optional[bool] = field(
+        default=True,
+        metadata={"help": "Pass trust_remote_code to from_pretrained for models that require custom code."},
     )
     learning_rate: Optional[float] = field(default=5e-4, metadata={"help": "optimizer learning rate"})
     lr_scheduler_type: Optional[str] = field(default="cosine", metadata={"help": "the lr scheduler type"})
